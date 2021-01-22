@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+spec:
+  containers: # array or list
+    - name: nginx-container
+      image: nginx
+  schedulerName: asdf

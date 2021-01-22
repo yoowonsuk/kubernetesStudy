@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    A: B
+#    type: front-end or fronted
+#    costcenter: amer
+#    location : NA
+
+spec:
+  containers: # array or list
+    - name: nginx-container
+      image: nginx
+  
