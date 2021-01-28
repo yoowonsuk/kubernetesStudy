@@ -1,0 +1,3 @@
+kubectl explain pods --recursive | less
+
+kubectl explain pods --recursive | grep -A8 envFrom

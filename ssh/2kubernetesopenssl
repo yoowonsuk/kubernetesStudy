@@ -1,0 +1,5 @@
+kubectl get pods --server my-kube-playground:6443 --client-key admin.key --client-certificate admin.crt --certificate-authority ca.crt
+ above doesn't work
+
+make kubeconfig file ($HOME/.kube/config)
+then kubectl get pods --kubeconfig config

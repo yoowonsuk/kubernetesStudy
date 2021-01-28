@@ -1,0 +1,10 @@
+labels:
+  role: db   > in Pod
+
+podSelector:
+  matchLabels:
+    role: db      > in network policy
+
+
+
+

@@ -1,0 +1,64 @@
+openssl genrsa -out ca.key 2048
+openssl req -new -key ca.key -subj "/CN=KUBERNETES-CA" -out ca.csr // request
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt // sign certificates
+
+
+
+
+
+openssl genrsa -out admin.key 2048
+openssl req -new -key admin.key -subj "/CN=kube-admin/O=system:masters" -out admin.csr
+openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
+
+# adding group(/o=system:masters) differentiates other users.
+
+
+usage
+1. curl https://kube-apiserver:6443/api/v1/pods --key admin.key --cert admin.crt --cacert ca.crt
+
+2. checkout kube-config.yaml
+
+
+
+apiserver usage
+openssl genrsa -out apiserver.key 2048
+openssl rerq -new -key apiserver.key -subj "/CN=kube-apiserver" -out apiserver.csr -config openssl.cnf
+(check openssl.cnf, you can see DNS(kubernetes, kubernetes.default.svc.cluster.local etc.. 4things) /& IP(host, apiserver pod))
+
+openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -out apiserver.crt
+
+
+kubelet-config.yaml << check each node, kind will be kubeletConfiguration
+server node name -> node01, node02 ...
+client node name -> system:node:~~~ ex)system:node:node01 (also group should be SYSTEM:NODES)
+
+
+
+
+
+---
+the hard way
+cat /etc/systemd/system/kube-apiserver.service
+kubeadm
+cat /etc/kubernetes/manifests/kube-apiserver.yaml
+
+(kube-apiserver)
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
+* subject is name
+
+
+journalctl -u etcd.service -l
+kubectl logs etcd-master
+docker ps -a
+docker logs 87fc (for example)
+
+
+
+if new user come in -> Controller Manager does it (CSR-APPROVING, CSR_SIGNING)
+openssl genrsa -out jane.key 2048
+openssl req -new -key jane.key -subj "/CN=jane" -out jane.csr
+OR check jane-csr.yaml
+
+then kubectl certificate approve jane
+
+

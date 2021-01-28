@@ -1,0 +1,17 @@
+# dynamic provisioning
+
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: google-storage
+provisioner: kubernetes.io/gce-pd
+
+parameters:
+  type: pd-standard [ pd-standard | pd-ssd]
+  replication-type: none [none | regional-pd]
+
+# So we don't need PV
+#
+# remove it and
+# storageClassName: google-storage should be inserted

@@ -1,0 +1,24 @@
+ssh-keygen
+
+cat ~/.ssh/authorized_keys // for client
+
+ssh -i id_ras user1@server1 // for server
+
+
+
+openssl genrsa -out my-bank.key 1024         // private key
+openssl rsa -in my-bank.key -pubout > myback.pem    // public key
+
+
+
+certificate signing request (CSR)
+openssl req -new -key my-bank.key -out my-bank.csr -subj "/C=US/ST=CA/O=MyOrg, Inc./CN=my-bank.com"
+
+
+server certificates for servers: kube-api, ETCD, kubelet
+client certificates for clients: admin(kubectl rest api), kube-scheduler, controller manager, kube-proxy -> all contact kube-apiserver
+
+
+all four -> kube-api -> ETCD&kubelet (you can create another key pairs as kubeapi client key, or you can use same key)
+
+also kubelet -> kube-api  (however ETCD not)

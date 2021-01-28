@@ -1,0 +1,33 @@
+--server my-kube-playground:6443
+--client-key admin.key
+--client-certificate admin.crt
+--certificate-authority ca.crt
+
+apiVersion: v1
+kind: Config
+
+current-context: my-kube-admin@my-kube-playground
+
+clusters:
+- name: my-kube-playground
+  cluster:
+    certificate-authority: ca.crt (/etc/kubernetes/pki/ca.crt)
+    # or you may use this -> certificate-authority-data: (cat ca.crt | base64) you may decode echo "~~~" | base64 --decode
+    server: https://my-kube-playground:6443
+
+contexts:
+- name: my-kube-admin@my-kube-playground
+  context:
+    cluster: my-kube-playground
+    user: my-kube-admin
+    namespace: finance << example 
+
+users:
+- name: my-kube-admin
+  user:
+    client-certificate: admin.crt
+    client-key: admin.key
+
+
+kubectl config view  (--kubeconfig=my-custom-config)
+kubectl config use-context name (ex. my-kube-admin@my-kube-playground)

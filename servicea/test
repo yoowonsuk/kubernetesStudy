@@ -1,0 +1,6 @@
+kubectl create serviceaccount sa1
+kubectl list serviceaccount
+
+
+1. user
+user-details.csv
