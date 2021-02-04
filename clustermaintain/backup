@@ -1,0 +1,53 @@
+kubectl get all --all-namespaces -o yaml > all-deploy-services.yaml
+
+or use tool = VELERO
+
+
+
+ETCD
+--data-dir=/var/lib/etcd (check etcd.service)
+
+
+
+ETCDCTL_API=3 etcdctl \
+snapshot save snapshot.db
+
+then look at ls
+
+ETCDCTL_API=3 stcdctl \
+snapshot status snapshot.db
+
+
+
+apply
+1. service kube-apiserver stop
+2. ETCDCTL_API=3 etcdctl \
+  snapshot restore snapshot.db \
+  --data-dir /var/lib/etcd-from-backup
+
+then --dat-dir will be changed into it
+3. systemctl daemon-reload       -> service etcd restarted
+4. service kube-apiserver start
+
+
+
+ETCDCTL_API=3 etcdctl \
+snapshot save snapshot.db \
+--endpoints=https://127.0.0.1:2379 \
+--cacert=/etc/etcd/ca.crt \
+--cert=/etc/etcd/etcd-server.crt \
+--key=/etc/etcd/etcd-server.key
+
+original way (endpoint, cert etc..)
+
+
+
+----------
+export ETCDCTL_API=3   << in master node
+etcdctl version 
+-----------
+
+
+vim /etc/kubernetes/manifests/etcd.yaml
+scroll all way down change it only
+this is mount process

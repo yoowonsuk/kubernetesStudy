@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear
+spec:
+  backend:
+    serviceName: wear-service
+    servicePort: 80
+
+# if there is service to wear pod
+# kubectl get ingress
+
+#path = URL
+#rule = fork
+
+this one 1 path 1 rule

@@ -1,0 +1,40 @@
+go get -u k8s.io/test-infra/kubetest // install
+kubetest --extract=v1.11.3
+cd kubernetes
+kubetest --test --provider=skeleton > testout.txt //sksleton => local cluster
+if so, we should first type
+1. export KUBE_MASTER_IP="192.168.26.10:6443"
+2. export KUBE_MASTER=kube-master
+
+kubetest --test --provider=skeleton --test_args="--ginkgo.focus=Secrets" > testout.txt
+kubetest --test --provider=skeleton --test_args="--ginkgo.focus=\[Conformance\]" > testout.txt
+
+
+smoke test
+TSL Bootstrapping the Kubernetes Worker Nodes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://github.com/mmumshad/kubernetes-the-hard-way
+
+https://www.youtube.com/watch?v=V_YqLu0z6_U&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo&index=20

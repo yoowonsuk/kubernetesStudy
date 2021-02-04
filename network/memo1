@@ -1,0 +1,56 @@
+cat >> /etc/hosts
+192.168.1.11 db
+
+
+title: Name resolution -> DNS
+ping db (not hostname)
+ssh db
+curl db
+
+
+cat /etc/resolv.conf -> DNS server (192.168.1.100)
+nameserver 192.168.1.100
+
+
+------------------------
+cat >> /etc/resolv.conf
+search mycompany.com prod.mycompany.com
+
+then ping web -> web.mycompany.com
+------------------------
+
+
+DNS Record Types
+A AAAA CNAME
+
+
+nslookup www.google.com
+dig www.google.com
+
+
+service has ip:port -> ip
+
+kube-proxy use userspace(listening) / iptables / ipvs
+kube-proxy --proxy-mode [userspace | iptablkes | ipvs ]
+
+kube-api-server --service-cluster-ip-range ipNet (default: 10.0.0.0/24)
+ps aux | grep kube-api-server
+
+iptables -L -t net | grep db-service
+cat /var/log/kube-proxy.log
+
+
+if namespace exists,
+curl http://web-service.apps (apps is namespace, otherwise.. http://web-service
+full command -> curl http://web-service.apps.svc.cluster.local
+(hostname: web-service, namespace: apps, type: svc, root: cluster.local)
+
+
+for pod -> ip.namespace.pod.cluster.local (ip use dash)
+ie curl http://10-244-2-5.apps.pod.cluster.local
+
+cat /etc/coredns/Corefile
+kubectl get configmap -n kube-system   ==   cat /etc/resolv.conf
+cat /var/lib/kubelet/config.yaml
+host web-service (web-service is servicename)
+

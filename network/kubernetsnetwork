@@ -1,0 +1,19 @@
+each node
+ip link add v-net-0 type bridge
+ip link est dev v-net-0 up
+ip addr add 10.244.1.1/24 dev v-net-0 # ip should be different
+
+bluepod$ ping 10.244.2.2(pod in another node)
+node1$ ip route add 10.244.2.2 via 192.168.1.12
+
+but let's register them to localhost, not in each node
+
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+-> then it will create daemonset.extensions/weave-net
+
+
+kubectl get pods -n kube-system
+kubectl logs weave-net-5gcmb weave -n kube-system
+
+

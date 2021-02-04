@@ -1,0 +1,28 @@
+cat /etc/systemd/system/kube-apiserver.service
+
+--etcd-servers=https://10.240.0.10:2379,https://10.240.0.11:2379
+
+quorum
+
+
+
+wget -q -https-only "https://github.com/coreos/etcd/releases/download/v3.3.9/etcd-v3.3.9-linux-amd64.tar.gz"
+
+tar -xvf etcd-v3.3.9-linux-amd64.tar.gz
+
+mv etcd-v3.3.9-linux-amd64/etcd* /usr/local/bin
+
+mkdir -p /etc/etcd /var/lib/etcd
+
+cp ca.pem kubernetes-key.pem kubernetes.pem /etc/etcd
+
+vim /etc/systemd/system/kube-apiserver.service
+--initial-cluster peer-1=https://${PEER!_IP}:2380,peer-2=https://${PEER2_IP}:2380
+
+
+
+
+export ETCDCTL_API=3
+etcdctl put name john
+etcdctl get name
+etcdctl get / --prefix --keys-only

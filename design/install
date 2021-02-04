@@ -1,0 +1,66 @@
+
+https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo
+
+
+https://github.com/mmumshad/kubernetes-the-hard-way
+
+
+
+
+Resources
+The vagrant file used in the next video is available here:
+
+https://github.com/kodekloudhub/certified-kubernetes-administrator-course
+
+Here's the link to the documentation:
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
+
+first, virtual box
+vagrant up
+vagrant status
+vagrant ssh kubemaster
+uptime
+logout
+vagrant ssh kubenode01
+vagrant ssh kubenode02
+
+
+
+
+
+
+
+
+
+
+lsmod | grep br_netfilter
+sudo modprobe br_netfilter
+
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+
+https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker as follow (docker install)
+1. sudo apt-get update && sudo apt-get install -y \
+  apt-transport-https ca-certificates curl software-properties-common gnupg2
+
+2. curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key --keyring /etc/apt/trusted.gpg.d/docker.gpg add -
+
+
+at the end
+systemctl status docker.service
+
+
+
+
+
+this should be done only for master node
+kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=${IP}

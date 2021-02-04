@@ -1,0 +1,45 @@
+docker run --network none nginx
+
+docker run --network host nginx // eth0 = 192.168.1.10 = container ip (ie port 80)
+
+docker run nginx // internal BRIDGE (docker network ls -> docker0)
+// docker did > ip link add docker0 type bridge > check it using command " ip link"
+ip addr // to see host ip about docker0
+ip netns -> to see namespace
+docker inspect 942d70e585b2(for example, maybe container) -> networksettings
+
+ip link -> there is bridge interface
+ip -n namespace link -> container interface
+
+ip -n ${namespace} addr -> to see container's ip address
+if container ip -> 172.17.0.3
+curl http://172.17.0.3:80 (inside host, not outside host)
+so, docker run -p 8080:80 nginx
+curl http://192.168.1.10:80080 (outside host, it works)
+
+how?
+iptables -t nat -A PREROUTING -j DNAT --dport 8080 --to-destination 80
+iptables -t nat -A DOCKER -j DNAT --dport 8080 --to-destination 172.12.0.3:80 (this ip is container ip)
+check this out : iptables -nvL -t nat
+
+
+Bridge
+1. create network namespace
+2. create bridge network/interface
+3. create VETH pairs(pipe, virtual cable)
+4. attach VETH to namespace
+5. attach other veth to bridge
+6. assign ip address
+7. bring the interfaces up
+8. enable NAT -ip masquerade
+
+command
+ex)  bridge add <containerID> <namespace> (namespace = /var/run/netns/containerID)
+
+CNI (container network interface)
+but only docker -> CNM (container network model) -> so we can't use docker run --network=cni-bridge nginx
+
+docker run --network=none nginx  ==   bridge add <CID> <namespace>
+
+etcd 2379 - control plane
+etcd 2380 - peer etcd
