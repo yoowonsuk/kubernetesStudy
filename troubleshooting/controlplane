@@ -1,0 +1,18 @@
+service kube-apiserver status
+service kube-controll-manager status
+service kube-scheduler status
+service kubelet status
+service kube-proxy status
+
+
+
+kubectl logs kube-apiserver-master -n kube-system
+sudo journalctl -u kube-apiserver
+
+
+kubectl scale deployment $(name) --replicas=2
+
+openssl x509 -in /var/lib/kubelet/worker-1.crt -text
+
+systemctl status kubelet.service
+systemctl restart kubelet
