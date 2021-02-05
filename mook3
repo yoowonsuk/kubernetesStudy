@@ -1,0 +1,113 @@
+kubectl create serviceaccount pvviewer
+kubectl create clusterrole pvviewer-role --resource-persistentvolumes --verb=list
+kubectl create clusterrolebinding pvviewer-role-binding --clusterrole=pvviewer-role --serviceaccount=deafult:pvviewer
+kubectl run --generator=run-pod/v1 pvviewer --image=redis --dry-run -o yaml > adsf.yaml
+
+spec:
+  containers:
+  ~~
+  serviceAccountName: pvviewer
+  
+  
+  
+  
+kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="InternalIP")].address}'
+
+
+
+kubectl run --generator=run-pod/v1 alpha --image=nginx --dry-run -o yaml > multi-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-pod
+spec:
+  containers:
+  - image: nginx
+    name: alpha
+    env:
+    - name: name
+      value: alpha
+  - image: busybox
+    name: beta
+    command: ["sleep", "4800"]
+    env:
+    - name: name
+      value: beta
+      
+
+
+spec:
+  containers:
+  - image: 
+    resources:
+      limits:
+        cpu: "2"
+        memory: "500Mi"
+        
+        
+-----------------------        
+kubectl run --generator=run-pod/v1 test-np --image=busybox:1.28 --rm --it -- sh
+nc -z -v -w 2 np-test-service 
+#connection failed
+
+kubectl get netpol
+kubectl describe netpol $(netpol name)
+kubectl api-versions | grep -i network
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-to-nptest
+  namespace: default
+  spec:
+    podSelector:
+     matchLabels:
+       run: np-test-1
+   policyTypes:
+   - Ingress
+   ingress:
+   - ports:
+     - port: 80
+       protocol: TCP
+       
+       
+--------------------
+
+
+kubectl taint node node01 env_type=production:NoSchedule
+kubectl run --generator=run-pod/v1 dev-redis --image=redis:alpine
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prod-redis
+  namespace: default
+spec:
+  containers:
+  - image: redis:alpine
+    imagePullPolicy: IfNotPresent
+    name: prod-redis
+  tolerations:
+  - effect: NoSchedule
+    key: env_type
+    operator: Equal
+    value: production
+    
+    
+ 
+kuectl run --generator=run-pod/v1 hr-pod --image=redis:alpine --labels=environment=production,tier=frontend --namespace=hr
+
+
+--------------------------
+cd .kube
+ls -ltr
+cat config   -> check server
+
+kubectl cluster-info --kubeconfig=/root/super.kubeconfig   (super.kubeconfig is file)
+---------------------------
+
+
+
+kubectl scale depolyment nginx-deploy --replicas=3
+sed -i 's/kube-contro1ler-manager/kube-controller-manager/g' kube-controller-manager.yaml
+grep contro1ler kube-controller-manager.yaml | wc -l
+
