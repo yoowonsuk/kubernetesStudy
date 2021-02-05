@@ -1,0 +1,115 @@
+cd /etc/kubernetes/manifests  -> cat etcd.yaml
+ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt --key=/etc/kubernetes/pki/healthcehck-client.key snapshot save ${path}
+ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt --key=/etc/kubernetes/pki/healthcehck-client.key snapshot status ${path} -w table
+
+kubectl run --generator=run-pod/v1 elephant --image=redis --dry-run -o yaml > name.yaml
+resources:
+  requests:
+    cpu: "1"
+    memory: "200Mi"
+    
+    
+apiVersion: v1
+kind: Pod
+metadata:
+spec:
+  containers:
+  - command: ["sleep", "4800"]
+    securityContext:
+      capabilities:
+        add: ["SYS_TIME"]
+     
+     
+     
+     
+apiVersion: v1
+kind: PersistentVolumneClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 10Mi
+      
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: use-pv
+  name: use-pv
+spec:
+  containers:
+  - image: nginx
+    name: use-pv
+    volume:Mounts:
+    - mountPath: /data
+      name: mypd
+    volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: my-pvc
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+
+
+
+kubctl run nginx-deploy --image=nginx:1.16 --replicas=1 --record
+kubectl rollout history deployment nginx-deploy
+kubectl set image deployment/nginx-deploy nginx-deploy=nginx:1.17 --record
+kubectl describe deployments. nginx-deploy | grep -i image
+
+
+ls -ltr | tail -2 (no meaning)
+kubectl api-version | grep certif
+
+apiVersion: certificates.k8s.io/v1beta1
+kind: CertificateSigningRequest
+metadata:
+  name: john-developer
+spec:
+  request: LSDFSDF~~                      < $(cat john.csr | base 64 | tr -d "\n") you can use this command as well
+  usages:
+  - digital signature
+  - key encipherment
+  - server auth                  
+  
+kubectl get csr
+kubectl certificate approve john-developer
+kubectl create role developer --resource-pods --verb=create,list,get,update,delete --namespace=development
+kubectl crate rolebinding developer-role-binding --role=developer --user=john --namespace=developer
+kubectl -n development describe rolebindings.rbac.authorization.k8s.io developer-role-binding
+kubectl auth can-i update pods
+yes
+kubectl auth can-i update pods --as=john
+no
+kubectl auth can-i update pods --namespace=development --as=john
+yes
+
+
+
+kubectl run --generator=run-pod/v1 nginx-resolver --image=nginx
+kubectl expose pod nginx-resolver --name=nginx-resolver-service --port=80 --target-port=80 --type=ClusterIP
+kubectl delete svc nginx-resolver (if exists)
+kubectl run --generator=run-pod/v1 test-nslookup --image=busybox:1.28 --rm -it -- nslookup nginx-resolver-service
+kubectl run --generator=run-pod/v1 test-nslookup --image=busybox:1.28 --rm -it -- nslookup 10-32-0-5.default.pod (ClusterIP)
+
+-----------------------
+ssh node01
+systemctl status kubelet
+cd /var/lib/kubelet/
+ls or ls-ltr
+vim config.yaml -> check staticPodPath
+cd /etc/kubernetes/manifests
+
+kubectl run --generator=run-pod/v1 nginx-critical --image=nginx --dry-run -o yaml > nginx.critical.yaml   -> copy it
+put it in /etc/kubernetes/manifests/ in node01
+
+ssh master (logout)
+kubectl get pods
+--------------------------
+
