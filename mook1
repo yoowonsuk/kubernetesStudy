@@ -1,0 +1,38 @@
+kubctl run nginx-pod --image=nginx:alpine   ( label -> run=nginx-pod)
+
+kubectl run messaging --image=redis:alpine -l tier=msg
+
+kubectl create ns apx-x9984574
+
+kubectl get nodes -o json > /path 
+
+kubectl expose pod messaging --name messaging-service --port 6379 --target-port 6379
+
+kubectl create ds hr-web-app --image=kodekloud/webapp-color
+kubectl scale deployment hr-web-app --replicas=2
+
+kubectl run static-busybox --image=busybox --command sleep 1000 --dry-run=client -o yaml > static-busybox.yaml
+(cd /var/lib/kubelet/   grep -i staticPod config.yaml)
+
+kubectl run temp-bus --image=redis:alpine -n finance
+(kubectl run temp-bus --image=redis:alpine --dry-run=client -o yaml > pod.yaml)
+
+kubectl expose deployment hr-web-app --name  hr-web-app-service --type=NodePort --port 8080 --target-port 8080 --nodePort 30082 --dry-run=client -o yaml > svc.ymal
+
+kubectl get nodes -o jsonpath='{.items[*].status.nodeInfo.isImage}' > /path
+kubectl get nodes -o json | less
+
+(kubectl explain pv --recursive | less)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+  - ReadWriteMany
+  hostPath:
+    path: /path
+
+  
