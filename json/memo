@@ -1,0 +1,19 @@
+kubectl get pods -o=jsonpath='{.items[0].spec.containers[0].image}'
+{"\n"} \t
+
+row, column
+FOR EACH NODE
+ PRINT NODE NAME \t PRINT CPU COUNT \n
+END FOR
+
+
+kubectl get nodes -o=jsonpath=
+'{range .items[*]}
+ {.metadata.name}{"\t"}}.status.capacity.cpu}{"\n"}
+{end}'
+
+
+
+kubectl get nodes -o=custom-columns=<COLUMN NAME>:<JSON PATH>
+kubectl get nodes -o=custom-columns=NODE:.metadata.name,CPU:.status.capacity.cpu
+kubectl get nodes --sort-by=.metadata.name
