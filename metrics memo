@@ -3,3 +3,26 @@ kubectl create -f deploy/1.8+/
 
 kubectl top node
 kubectl top pod
+
+
+
+
+docker run -d kodekloud/event-simulator
+docker logs -f ecf(docker container ID)
+
+
+
+event-simulator.yaml
+apiVersoin: v1
+kind: Pod
+metadata:
+  name: event-simulator-pod
+spec:
+  containers:
+  - name: event-simulator
+    image: kodekloud/event-simulator
+  - name: image-processor
+    image: some-image-processor
+  
+kubectl create -f event-simulator.yaml
+kubectl logs -f event-simulator-pod event-simulator(container name)
