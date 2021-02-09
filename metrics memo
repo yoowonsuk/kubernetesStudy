@@ -26,3 +26,5 @@ spec:
   
 kubectl create -f event-simulator.yaml
 kubectl logs -f event-simulator-pod event-simulator(container name)
+
+kubectl logs pod -c container
