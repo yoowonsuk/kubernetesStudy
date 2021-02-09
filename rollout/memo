@@ -1,0 +1,2 @@
+kubectl rollout status deployment/myapp-deployment
+kubectl rollout history deployment/myapp-deployment
