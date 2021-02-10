@@ -28,3 +28,5 @@ volumes:
 - name: app-config-volume
   configMap:
     name: app-config
+
+kubectl explain --recursive | less         (or grep
