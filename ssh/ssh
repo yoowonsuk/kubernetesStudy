@@ -22,3 +22,7 @@ client certificates for clients: admin(kubectl rest api), kube-scheduler, contro
 all four -> kube-api -> ETCD&kubelet (you can create another key pairs as kubeapi client key, or you can use same key)
 
 also kubelet -> kube-api  (however ETCD not)
+
+easyrsa
+openssl
+cfssl
