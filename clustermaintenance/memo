@@ -1,0 +1,1 @@
+kube-controller-manager --pod-eviction-timeout=5m0s
