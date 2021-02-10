@@ -6,8 +6,8 @@ ssh -i id_ras user1@server1 // for server
 
 
 
-openssl genrsa -out my-bank.key 1024         // private key
-openssl rsa -in my-bank.key -pubout > myback.pem    // public key
+openssl genrsa -out my-bank.key 1024         // public key
+openssl rsa -in my-bank.key -pubout > myback.pem    // private key
 
 
 
