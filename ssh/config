@@ -42,3 +42,4 @@ users:
 
 kubectl config view  (--kubeconfig=my-custom-config)
 kubectl config use-context name (ex. my-kube-admin@my-kube-playground)
+kubectl config --kubeconfig=/root/my-kube-config use-context research
