@@ -15,3 +15,5 @@ parameters:
 #
 # remove it and
 # storageClassName: google-storage should be inserted
+
+gcloud beta compute disks create --size 1GB --region us-east1 pd-disk < static provisioning
