@@ -13,3 +13,5 @@ rules:
 
 
 # if you want, use namespace, this is default namespace
+
+#kubectl api-resources --namespaced=true/false
