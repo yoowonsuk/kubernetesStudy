@@ -1,0 +1,7 @@
+curl https://kube-master:6443/version
+curl https://kube-master:6443/api/v1/pods
+
+curl https://localhost:6443 -k --key admin.key --cert admin.crt --cacert ca.crt
+curl https://localhost:6443/apis -k | grep "name"
+kubectl proxy
+curl http://localhost:8001 -k
