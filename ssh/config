@@ -3,6 +3,17 @@
 --client-certificate admin.crt
 --certificate-authority ca.crt
 
+--------------------
+curl https://my-kube-playground:6443/api/v1/pods \
+--key admin.key
+--cert admin.crt
+--cacert ca.crt
+
+kubectl get pods --kubeconfig config
+kubectl get pods (by default $HOME/.kube/config)
+--------------------
+
+
 apiVersion: v1
 kind: Config
 
