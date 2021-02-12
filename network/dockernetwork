@@ -43,3 +43,7 @@ docker run --network=none nginx  ==   bridge add <CID> <namespace>
 
 etcd 2379 - control plane
 etcd 2380 - peer etcd
+
+
+iptables -t nat -A PREROUTING -j DNAT --dport 8080 --to-destination 80
+iptables -t nat -A DOCKER -j DNAT --dport 8080 --to-destination 172.17.0.3.80
