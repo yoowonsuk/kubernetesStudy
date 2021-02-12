@@ -26,3 +26,8 @@ export ETCDCTL_API=3
 etcdctl put name john
 etcdctl get name
 etcdctl get / --prefix --keys-only
+
+kubernetes the hard way install
+https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNGENo
+
+https://githb.com/mmumshad/kubernetes-the-hard-way
