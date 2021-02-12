@@ -54,3 +54,4 @@ kubectl get configmap -n kube-system   ==   cat /etc/resolv.conf
 cat /var/lib/kubelet/config.yaml
 host web-service (web-service is servicename)
 
+kube-proxy --proxy-mode [userspace | iptables | ipvs ]
