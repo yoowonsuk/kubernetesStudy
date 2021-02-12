@@ -64,3 +64,15 @@ kubeadm kubelet install
 
 this should be done only for master node
 kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=${IP}
+
+
+
+(come back host)
+mkdir -p $HOME
+echo "kubeadm join
+(weave install) kubectl apply -f "https://cloud.weave.works/k8s
+
+
+
+
+join each node
