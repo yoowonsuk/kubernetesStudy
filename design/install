@@ -5,7 +5,7 @@ https://www.youtube.com/watch?v=uUupRagM7m0&list=PL2We04F3Y_41jYdadX55fdJplDvgNG
 https://github.com/mmumshad/kubernetes-the-hard-way
 
 
-
+docker -> kubeadm -> initilize(only master node) -> POD Network -> Join Node(worker node only)
 
 Resources
 The vagrant file used in the next video is available here:
