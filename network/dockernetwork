@@ -57,6 +57,7 @@ netstat -plnt
 route
 
 
+Network addons 
 https://kubernetes.io/docs/concepts/cluster-administration/addons/
 https://kubernetes.io/docs/concepts/cluster-administration/networking/#how-to-implement-the-kubernetes-networking-model
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/#steps-for-the-first-control-plane-node
