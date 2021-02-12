@@ -58,7 +58,7 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#dock
 at the end
 systemctl status docker.service
 
-
+kubeadm kubelet install
 
 
 
