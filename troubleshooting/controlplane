@@ -19,3 +19,8 @@ openssl x509 -in /var/lib/kubelet/worker-1.crt -text
 systemctl status kubelet.service
 systemctl restart kubelet
 systemctl daemon-reload
+
+
+kubectl cluster-info
+ssh node01
+cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf -> check --config=/var/lib/kubelet/config.yaml
