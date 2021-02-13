@@ -40,3 +40,15 @@ I also have some JSON PATH exercises with Kubernetes Data Objects. Make sure you
 https://mmumshad.github.io/json-path-quiz/index.html#!/?questions=questionskub1
 
 https://mmumshad.github.io/json-path-quiz/index.html#!/?questions=questionskub2
+
+
+
+
+
+
+
+
+
+Use a JSON PATH query to identify the context configured for the aws-user in the my-kube-config context file and store the result in /opt/outputs/aws-context-name.
+
+kubectl config view --kubeconfig=my-kube-config -o jsonpath="{.contexts[?(@.context.user=='aws-user')].name}" > /opt/outputs/aws-context-name
