@@ -73,7 +73,7 @@ kind: CertificateSigningRequest
 metadata:
   name: john-developer
 spec:
-  request: LSDFSDF~~                      < $(cat john.csr | base 64 | tr -d "\n") you can use this command as well
+  request: LSDFSDF~~  ==  (before master)                    < $(cat john.csr | base 64 | tr -d "\n") you can use this command as well
   usages:
   - digital signature
   - key encipherment
