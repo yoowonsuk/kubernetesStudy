@@ -10,6 +10,8 @@ kubectl logs kube-apiserver-master -n kube-system
 sudo journalctl -u kube-apiserver
 
 
+cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf -> check --config=/var/lib/kubelet/config.yaml -> staticpod 
+
 kubectl scale deployment $(name) --replicas=2
 
 openssl x509 -in /var/lib/kubelet/worker-1.crt -text
