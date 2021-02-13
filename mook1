@@ -19,7 +19,7 @@ kubectl run temp-bus --image=redis:alpine -n finance
 
 kubectl expose deployment hr-web-app --name  hr-web-app-service --type=NodePort --port 8080 --target-port 8080 --nodePort 30082 --dry-run=client -o yaml > svc.ymal
 
-kubectl get nodes -o jsonpath='{.items[*].status.nodeInfo.isImage}' > /path
+kubectl get nodes -o jsonpath='{.items[*].status.nodeInfo.osImage}' > /path
 kubectl get nodes -o json | less
 
 (kubectl explain pv --recursive | less)
