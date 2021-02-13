@@ -18,3 +18,4 @@ openssl x509 -in /var/lib/kubelet/worker-1.crt -text
 
 systemctl status kubelet.service
 systemctl restart kubelet
+systemctl daemon-reload
