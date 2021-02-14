@@ -89,7 +89,7 @@ spec:
   tolerations:
   - effect: NoSchedule
     key: env_type
-    operator: Equal
+    operator: Equal                    # Exist
     value: production
     
     
