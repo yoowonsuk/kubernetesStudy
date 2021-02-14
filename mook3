@@ -102,7 +102,7 @@ cd .kube
 ls -ltr
 cat config   -> check server
 
-kubectl cluster-info --kubeconfig=/root/super.kubeconfig   (super.kubeconfig is file)
+kubectl cluster-info --kubeconfig=/root/super.kubeconfig   (super.kubeconfig is file)    -> override
 ---------------------------
 
 
