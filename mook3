@@ -12,7 +12,7 @@ spec:
   
   
 kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="InternalIP")].address}'
-
+kubectl get nodes -o jsonpath='{.items[*].status.addresses[].address}'
 
 
 kubectl run --generator=run-pod/v1 alpha --image=nginx --dry-run -o yaml > multi-pod.yaml
