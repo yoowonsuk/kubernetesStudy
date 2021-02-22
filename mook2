@@ -44,7 +44,7 @@ spec:
   containers:
   - image: nginx
     name: use-pv
-    volume:Mounts:
+    volumeMounts:
     - mountPath: /data
       name: mypd
     volumes:
