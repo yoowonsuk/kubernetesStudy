@@ -11,7 +11,7 @@ END FOR
 /*
 kubectl get nodes -o=jsonpath=
 '{range .items[*]}
- {.metadata.name}{"\t"}.status.capacity.cpu}{"\n"}
+ {.metadata.name}{"\t"}{.status.capacity.cpu}{"\n"}
 {end}'
 */
 kubectl get nodes -o=jsonpath='{range .items[*]}{"\t"}{.status.capacity.cpu}{"\n"}{end}'
