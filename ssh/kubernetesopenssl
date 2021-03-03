@@ -23,7 +23,7 @@ usage
 apiserver usage
 openssl genrsa -out apiserver.key 2048
 openssl rerq -new -key apiserver.key -subj "/CN=kube-apiserver" -out apiserver.csr -config openssl.cnf
-(check openssl.cnf, you can see DNS(kubernetes, kubernetes.default.svc.cluster.local etc.. 4things) /& IP(host, apiserver pod))
+(check openssl.cnf, you can see DNS(kubernetes, kubernetes.default.svc.cluster.local etc.. 4things) /& IP(host, apiserver pod)) -> image name 111
 
 openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -out apiserver.crt
 
