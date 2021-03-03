@@ -14,7 +14,7 @@ cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf -> check --config=/var
 
 kubectl scale deployment $(name) --replicas=2
 
-openssl x509 -in /var/lib/kubelet/worker-1.crt -text
+openssl x509 -in /var/lib/kubelet/worker-1.crt -text // get information on worker node-1 (node failure)
 
 systemctl status kubelet.service
 systemctl restart kubelet
