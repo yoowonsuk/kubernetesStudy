@@ -21,7 +21,8 @@ client usage
 
 
 client
-apiserver usage
+apiserver usage  -> kubernetes , kubernetes.default , kubernetes.default.svc , kubernetes.default.svc.cluster.local
+                     10.96.0.1    172.17.0.87
 openssl genrsa -out apiserver.key 2048
 openssl rerq -new -key apiserver.key -subj "/CN=kube-apiserver" -out apiserver.csr -config openssl.cnf
 (check openssl.cnf, you can see DNS(kubernetes, kubernetes.default.svc.cluster.local etc.. 4things) /& IP(host, apiserver pod)) -> image name 111
