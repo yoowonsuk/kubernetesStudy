@@ -1,3 +1,4 @@
+CA
 openssl genrsa -out ca.key 2048
 openssl req -new -key ca.key -subj "/CN=KUBERNETES-CA" -out ca.csr // request
 openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt // sign certificates
@@ -5,7 +6,7 @@ openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt // sign certificates
 
 
 
-
+server
 openssl genrsa -out admin.key 2048
 openssl req -new -key admin.key -subj "/CN=kube-admin/O=system:masters" -out admin.csr
 openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
@@ -13,13 +14,13 @@ openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
 # adding group(/o=system:masters) differentiates other users.
 
 
-usage
+client usage
 1. curl https://kube-apiserver:6443/api/v1/pods --key admin.key --cert admin.crt --cacert ca.crt
 
 2. checkout kube-config.yaml
 
 
-
+client
 apiserver usage
 openssl genrsa -out apiserver.key 2048
 openssl rerq -new -key apiserver.key -subj "/CN=kube-apiserver" -out apiserver.csr -config openssl.cnf
