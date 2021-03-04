@@ -76,3 +76,9 @@ echo "kubeadm join
 
 (kubeadm token create --help,   kubeadm token create --print-join-command)
 join each node
+
+
+
+
+kubeadm token create --help
+kubeadm token create --print-join--command
