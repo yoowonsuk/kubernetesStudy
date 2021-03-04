@@ -4,6 +4,8 @@ docker run -v data_volume:/var/lib/mysql mysql (create is not essential, automat
 
 docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
 
+// target = host
+// source = container
 
 storage
 ---
