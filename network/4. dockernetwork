@@ -3,7 +3,7 @@ docker run --network none nginx
 docker run --network host nginx // eth0 = 192.168.1.10 = container ip (ie port 80)
 
 docker run nginx // internal BRIDGE (docker network ls -> docker0)
-// docker did > ip link add docker0 type bridge > check it using command " ip link"
+// docker did > ip link add docker0 type bridge > check it using command " ip link" or "docker network ls"
 ip addr // to see host ip about docker0
 ip netns -> to see namespace
 docker inspect 942d70e585b2(for example, maybe container) -> networksettings
