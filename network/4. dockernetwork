@@ -4,18 +4,19 @@ docker run --network host nginx // eth0 = 192.168.1.10 = container ip (ie port 8
 
 docker run nginx // internal BRIDGE (docker network ls -> docker0)
 // docker did > ip link add docker0 type bridge > check it using command " ip link" or "docker network ls"
-ip addr // to see host ip about docker0
-ip netns -> to see namespace
+ip addr // to see host ip about docker0(172.17.0.1)
+ip netns -> to see namespace (b3165)
 docker inspect 942d70e585b2(for example, maybe container) -> networksettings
 
-ip link -> there is bridge interface
-ip -n namespace link -> container interface
+ip link -> there is bridge interface (vethbb1c343~)
+ip -n namespace link -> container interface (eth0@if8)
 
-ip -n ${namespace} addr -> to see container's ip address
+ip -n ${namespace} addr -> to see container's ip address 
 if container ip -> 172.17.0.3
+
 curl http://172.17.0.3:80 (inside host, not outside host)
 so, docker run -p 8080:80 nginx
-curl http://192.168.1.10:80080 (outside host, it works)
+curl http://192.168.1.10:8080 (outside host, it works)
 
 how?
 iptables -t nat -A PREROUTING -j DNAT --dport 8080 --to-destination 80
