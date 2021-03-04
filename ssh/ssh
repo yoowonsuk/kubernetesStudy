@@ -1,8 +1,8 @@
 ssh-keygen
 
-cat ~/.ssh/authorized_keys // for client
+cat ~/.ssh/authorized_keys // for server to check where public key exists
 
-ssh -i id_ras user1@server1 // for server
+ssh -i id_ras user1@server1 // for client to log in
 
 
 
