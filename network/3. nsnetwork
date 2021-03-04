@@ -21,7 +21,7 @@ ip netns exec red route
 
 
 if you want to connect two isoloated network
-lp link add veth-red type veth peer name veth-blue
+lp link add veth-red type veth peer name veth-blue   // bridge will be made
 ip link set veth-red netns red
 ip link set veth-blue netns blue
 
