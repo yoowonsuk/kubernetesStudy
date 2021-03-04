@@ -28,6 +28,15 @@ nslookup www.google.com
 dig www.google.com
 
 
+
+
+
+go 3.nsnetwork first
+then come back here
+
+
+
+
 service has ip:port -> ip
 
 kube-proxy use userspace(listening) / iptables / ipvs
