@@ -23,3 +23,35 @@ spec:
       #
       #  kubectl create configmap app-config --from-literal=APP_COLOR=blue
       #  kubectl create configmap app-config --from-file=app_config.properties
+
+
+envFrom:
+- configMapRef:
+    name: app-config
+
+env:
+- name: APP_COLOR
+  valueFrom:
+    configMapKeyRef:
+      name: app-config
+      key: KEY_COLOR
+      
+volumes:
+- name: app-config-volume
+  configMap:
+    name: app-config
+    
+    
+env:
+- name: APP_COLOR
+  value: pink
+
+env:
+- name: APP_COLOR
+  valueFrom:
+    configMapKeyRef:
+
+env:
+- name: APP_COLOr
+  valueFrom:
+    secreyKeyRef:
